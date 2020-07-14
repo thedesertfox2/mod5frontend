@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 
 
 
-const NavBar = () => {
+const NavBar = (props) => {
     return(
         <Navbar bg="dark" expand="lg">
             <Navbar.Brand>
@@ -32,11 +32,20 @@ const NavBar = () => {
                 </Nav.Link>
 
                 <Nav.Link >
-                    <Link to='/login'>
-                        <div style={{color: 'white'}}>
-                            Login
-                        </div>
-                    </Link>
+                    {
+                        props.user ? 
+                        <Link to='/home'>
+                            <div style={{color: 'white'}} onClick={props.logout}>
+                                Logout
+                            </div>
+                        </Link> 
+                        :
+                        <Link to='/login'>
+                            <div style={{color: 'white'}}>
+                                Login
+                            </div>
+                        </Link> 
+                    }
                 </Nav.Link>
                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

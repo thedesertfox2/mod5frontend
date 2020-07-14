@@ -31,7 +31,7 @@ class Login extends React.Component{
             if (data.error){
                 alert(data.message)
             } else {
-                console.log(data)
+                this.props.currentUser(data)
             }
         })
     }

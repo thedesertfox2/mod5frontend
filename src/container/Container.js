@@ -17,7 +17,7 @@ class Container extends React.Component {
                 } />
 
                 <Route path='/login' render={() =>
-                    <Login />
+                    <Login currentUser={this.props.currentUser}/>
                 } />
             </Switch>
         )
