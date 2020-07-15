@@ -3,8 +3,7 @@ import React from 'react'
 class Login extends React.Component{
     state = {
         username: '',
-        password: '',
-        login: false
+        password: ''
     }
 
     handleUsernameChange = (e) => {
@@ -28,10 +27,12 @@ class Login extends React.Component{
         })
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             if (data.error){
                 alert(data.message)
             } else {
-                this.props.currentUser(data)
+                localStorage.setItem('jwt', data.token)
+                this.props.currentUser(data.user_data)
             }
         })
     }
@@ -46,11 +47,10 @@ class Login extends React.Component{
                 <br/>
                 <label>Password: </label>
                 <br/>
-                <input type='text' name='password' value={this.state.password} onChange={this.handleUsernameChange}></input>
+                <input type='password' name='password' value={this.state.password} onChange={this.handleUsernameChange}></input>
                 <br/>
                 <br/>
                 <input type='submit' value='Login'/>
-                
             </form>
         )
     }

@@ -21,20 +21,42 @@ class App extends React.Component {
   }
 
   componentDidMount(){
+    this.fetchAllPaperwork()
+    this.fetchLoggedInUser()
+  }
+
+  fetchLoggedInUser = () => {
+    if (localStorage.getItem('jwt')){
+      fetch('http://localhost:3000/api/v1/token', {
+        method: 'GET',
+        headers: {
+          'Authentication': localStorage.getItem('jwt')
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        this.currentUser(data)
+      })
+    }
+  }
+
+  fetchAllPaperwork = () => {
     fetch('http://localhost:3000/dmv_paperworks')
     .then(res => res.json())
     .then(allPaperwork => this.setState({paperwork: allPaperwork}))
   }
 
-  currentUser = (data) => {
-    console.log(data)
-    this.setState({user: data.user_data})
+  currentUser = (user) => {
+    console.log(user)
+    this.setState({user: user})
   }
 
   logout = () => {
     this.setState({
       user: null
     })
+    localStorage.removeItem('jwt')
   }
 
   render(){
