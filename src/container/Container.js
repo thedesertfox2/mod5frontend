@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router-dom'
 import Homepage from '../component/Homepage'
 import Maneuvers from '../component/Maneuvers'
 import Login from '../component/Login'
+import Paperwork from '../component/Paperwork'
 
 
 class Container extends React.Component {
@@ -12,8 +13,13 @@ class Container extends React.Component {
                 <Route path='/maneuvers' render={() =>
                     <Maneuvers />
                 } />
+
                 <Route path='/home' render={() =>
                     <Homepage />
+                } />
+
+                <Route path='/paperwork' render={() =>
+                    this.props.paperwork.map(paperwork => <Paperwork paperWorkObj={paperwork} key={paperwork.id}/>)
                 } />
 
                 <Route path='/login' render={() =>
