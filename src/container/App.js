@@ -16,7 +16,8 @@ class App extends React.Component {
     super()
     this.state = {
       user: null,
-      paperwork: []
+      paperwork: [],
+      questions: []
     }
   }
 
@@ -75,7 +76,7 @@ class App extends React.Component {
           } />
 
           <Route path='/paperwork' render={() => 
-            this.state.user ? <Container component={Paperwork} paperwork={this.state.paperwork}/> : <Redirect to='login'/>
+            this.state.user ? <Container component={Paperwork} paperwork={this.state.paperwork} currentUser={this.state.user}/> : <Redirect to='login'/>
           } />
 
           <Route path='/login' render={() => 

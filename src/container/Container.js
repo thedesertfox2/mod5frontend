@@ -19,7 +19,7 @@ class Container extends React.Component {
                 } />
 
                 <Route path='/paperwork' render={() =>
-                    this.props.paperwork.map(paperwork => <Paperwork paperWorkObj={paperwork} key={paperwork.id}/>)
+                    this.props.paperwork.map(paperwork => <Paperwork paperWorkObj={paperwork} key={paperwork.id} currentUser={this.props.currentUser}/>)
                 } />
 
                 <Route path='/login' render={() =>
