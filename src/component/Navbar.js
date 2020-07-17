@@ -44,6 +44,14 @@ const NavBar = (props) => {
                 </Nav.Link>
 
                 <Nav.Link >
+                    <Link to='/practice_test'>
+                        <div style={{color: 'white'}}>
+                            Practice Test Questions
+                        </div>
+                    </Link>
+                </Nav.Link>
+
+                <Nav.Link >
                     {
                         props.user ? 
                         <Link to='/home'>

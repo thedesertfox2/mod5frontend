@@ -4,7 +4,7 @@ import Homepage from '../component/Homepage'
 import Maneuvers from '../component/Maneuvers'
 import Login from '../component/Login'
 import Paperwork from '../component/Paperwork'
-
+import Quiz from '../component/Quiz'
 
 class Container extends React.Component {
     render(){
@@ -20,6 +20,10 @@ class Container extends React.Component {
 
                 <Route path='/paperwork' render={() =>
                     this.props.paperwork.map(paperwork => <Paperwork paperWorkObj={paperwork} key={paperwork.id} currentUser={this.props.currentUser}/>)
+                } />
+
+                <Route path='/practice_test' render={() => 
+                    <Quiz/>
                 } />
 
                 <Route path='/login' render={() =>

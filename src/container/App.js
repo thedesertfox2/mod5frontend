@@ -8,6 +8,7 @@ import Maneuvers from '../component/Maneuvers'
 import Homepage from '../component/Homepage'
 import Login from '../component/Login'
 import Paperwork from '../component/Paperwork'
+import Quiz from '../component/Quiz'
 
 
 class App extends React.Component {
@@ -77,6 +78,10 @@ class App extends React.Component {
 
           <Route path='/paperwork' render={() => 
             this.state.user ? <Container component={Paperwork} paperwork={this.state.paperwork} currentUser={this.state.user}/> : <Redirect to='login'/>
+          } />
+
+          <Route path='/practice_test' render={() => 
+            <Container component={Quiz}/>
           } />
 
           <Route path='/login' render={() => 
