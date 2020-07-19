@@ -1,5 +1,6 @@
 import React from 'react'
 import TriviaQuestions from './TriviaQuestions'
+import Results from './Results'
 
 class Quiz extends React.Component{
     constructor(){
@@ -37,11 +38,25 @@ class Quiz extends React.Component{
         })
     }
 
+    newQuiz = () => {
+        this.setState({
+            takingQuiz: false,
+            option: null,
+            trivia: null,
+            i: 0
+        })
+    }
+
 
     render(){
         return(
             <div>
-                {this.state.takingQuiz 
+                
+                {this.state.takingQuiz && this.state.trivia.length === this.state.i
+                ?
+                <Results newQuiz={this.newQuiz}/>
+                :
+                this.state.takingQuiz
                 ?
                 this.state.trivia[this.state.i].map(trivia => 
                     <TriviaQuestions question={trivia.question} choices={trivia.choices} correct={trivia.choices.correct} nextQuestion={this.nextQuestion}/>)

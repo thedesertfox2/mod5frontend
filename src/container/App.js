@@ -69,11 +69,11 @@ class App extends React.Component {
         <Switch>
 
           <Route path='/maneuvers' render={() => 
-            <Container component={Maneuvers}/>
+            this.state.user ? <Container component={Maneuvers}/> : <Redirect to='login'/>
           } />
 
           <Route path='/home' render={() => 
-            <Container component={Homepage}/>
+            this.state.user ? <Container component={Homepage}/> : <Redirect to='login'/>
           } />
 
           <Route path='/paperwork' render={() => 
@@ -81,7 +81,7 @@ class App extends React.Component {
           } />
 
           <Route path='/practice_test' render={() => 
-            <Container component={Quiz}/>
+            this.state.user ? <Container component={Quiz}/> : <Redirect to='login'/>
           } />
 
           <Route path='/login' render={() => 
