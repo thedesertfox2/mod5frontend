@@ -9,7 +9,8 @@ class Quiz extends React.Component{
             takingQuiz: false,
             option: null,
             trivia: null,
-            i: 0
+            i: 0,
+            numberCorrect: 0
         }
     }
 
@@ -32,10 +33,12 @@ class Quiz extends React.Component{
         }
     }
 
-    nextQuestion = () => {
+    nextQuestion = (num) => {
         this.setState({
-            i: this.state.i += 1
+            i: this.state.i += 1,
+            numberCorrect: this.state.numberCorrect += num
         })
+    
     }
 
     newQuiz = () => {
@@ -43,7 +46,8 @@ class Quiz extends React.Component{
             takingQuiz: false,
             option: null,
             trivia: null,
-            i: 0
+            i: 0,
+            numberCorrect: 0
         })
     }
 
@@ -54,12 +58,12 @@ class Quiz extends React.Component{
                 
                 {this.state.takingQuiz && this.state.trivia.length === this.state.i
                 ?
-                <Results newQuiz={this.newQuiz}/>
+                <Results newQuiz={this.newQuiz} correct={this.state.numberCorrect} allQuestions={this.state.i} currentUser={this.props.currentUser}/>
                 :
                 this.state.takingQuiz
                 ?
                 this.state.trivia[this.state.i].map(trivia => 
-                    <TriviaQuestions question={trivia.question} choices={trivia.choices} correct={trivia.choices.correct} nextQuestion={this.nextQuestion}/>)
+                    <TriviaQuestions question={trivia.question} choices={trivia.choices} correct={trivia.choices.correct} nextQuestion={this.nextQuestion} currentUser={this.props.currentUser}/>)
                 :
                 <form onSubmit={this.submitQuestions}>
                     How many questions would you like?

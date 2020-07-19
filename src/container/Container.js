@@ -23,7 +23,7 @@ class Container extends React.Component {
                 } />
 
                 <Route path='/practice_test' render={() => 
-                    <Quiz/>
+                    <Quiz currentUser={this.props.currentUser}/>
                 } />
 
                 <Route path='/login' render={() =>

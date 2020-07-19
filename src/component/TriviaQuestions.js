@@ -13,10 +13,10 @@ class TriviaQuestions extends React.Component{
             console.log('correct')
             this.setState({
                 correct: this.props.correct
-            }, this.props.nextQuestion())
+            }, this.props.nextQuestion(1))
         } else {
             console.log('incorrect')
-            this.props.nextQuestion()
+            this.props.nextQuestion(0)
         }
     }
 
@@ -29,11 +29,19 @@ class TriviaQuestions extends React.Component{
             fakeArr[i] = fakeArr[j];
             fakeArr[j] = x;
         }
+        
         return fakeArr
+    }
+
+    componentDidMount(){
+        this.setState({
+            correct: []
+        })
     }
 
     render(){
         let choicesArr = this.mixUpArr()
+        console.log(this.props.currentUser)
         
         return(
             <div>

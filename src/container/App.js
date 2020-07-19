@@ -81,7 +81,7 @@ class App extends React.Component {
           } />
 
           <Route path='/practice_test' render={() => 
-            this.state.user ? <Container component={Quiz}/> : <Redirect to='login'/>
+            this.state.user ? <Container component={Quiz} currentUser={this.state.user}/> : <Redirect to='login'/>
           } />
 
           <Route path='/login' render={() => 
