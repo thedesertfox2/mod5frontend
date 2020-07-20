@@ -9,6 +9,7 @@ import Homepage from '../component/Homepage'
 import Login from '../component/Login'
 import Paperwork from '../component/Paperwork'
 import Quiz from '../component/Quiz'
+import Timer from '../component/Timer'
 
 
 class App extends React.Component {
@@ -82,6 +83,10 @@ class App extends React.Component {
 
           <Route path='/practice_test' render={() => 
             this.state.user ? <Container component={Quiz} currentUser={this.state.user}/> : <Redirect to='login'/>
+          } />
+
+          <Route path='/my_hours' render={() => 
+            this.state.user ? <Container component={Timer} currentUser={this.state.user}/> : <Redirect to='login'/>
           } />
 
           <Route path='/login' render={() => 

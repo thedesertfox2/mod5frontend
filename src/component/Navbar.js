@@ -15,7 +15,7 @@ const NavBar = (props) => {
             <Navbar.Brand>
                 <Link to='/home'>
                     <div style={{color: 'white'}}>
-                        React-Bootstrap
+                        Alex's Drivers Education App
                     </div>
                 </Link>
             </Navbar.Brand>
@@ -47,6 +47,14 @@ const NavBar = (props) => {
                     <Link to='/practice_test'>
                         <div style={{color: 'white'}}>
                             Practice Test Questions
+                        </div>
+                    </Link>
+                </Nav.Link>
+
+                <Nav.Link >
+                    <Link to='/my_hours'>
+                        <div style={{color: 'white'}}>
+                            Driving Hours
                         </div>
                     </Link>
                 </Nav.Link>

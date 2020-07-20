@@ -3,51 +3,100 @@ import React from 'react'
 class TriviaQuestions extends React.Component{
 
     state = {
-        correct: []
+        correct: [],
+        showAnswer: false, 
+        choices: [],
+        newArr: false
     }
 
     
 
+    
+
     clickAnswer = (e) => {
-        if (e.target.innerText === this.props.correct){
-            console.log('correct')
-            this.setState({
-                correct: this.props.correct
-            }, this.props.nextQuestion(1))
+
+        if (this.state.showAnswer === true){
+            if (this.state.correct[this.state.correct.length - 1] === this.props.correct){
+                console.log('correct')
+                this.setState({
+                    showAnswer: false,
+                    newArr: false
+                }, this.props.nextQuestion(1))
+            } else {
+                console.log('incorrect')
+                this.setState({
+                    showAnswer: false,
+                    newArr: false
+                }, this.props.nextQuestion(0))
+                
+            }
         } else {
-            console.log('incorrect')
-            this.props.nextQuestion(0)
+            if (e.target.innerText === this.props.correct){
+                console.log('correct')
+                this.setState({
+                    showAnswer: true,
+                    correct: [...this.state.correct, this.props.correct]
+                })
+            } else {
+                console.log('incorrect')
+                this.setState({
+                    showAnswer: true
+                })
+            }
+            
         }
     }
 
     mixUpArr = () => {
-        let fakeArr = [...this.props.choices.incorrect, this.props.choices.correct]
-        let j, x, i;
-        for (i = fakeArr.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            x = fakeArr[i];
-            fakeArr[i] = fakeArr[j];
-            fakeArr[j] = x;
+        if (this.state.newArr === false) {
+            if (this.state.choices.length === 0){
+                let fakeArr = [...this.props.choices.incorrect, this.props.choices.correct]
+                let j, x, i;
+                for (i = fakeArr.length - 1; i > 0; i--) {
+                    j = Math.floor(Math.random() * (i + 1));
+                    x = fakeArr[i];
+                    fakeArr[i] = fakeArr[j];
+                    fakeArr[j] = x;
+                }
+                
+                this.setState({
+                    choices: fakeArr,
+                    newArr: true
+                })
+
+            } else if (this.state.choices.length > 0) {
+                let fakeArr = [...this.props.choices.incorrect, this.props.choices.correct]
+                let j, x, i;
+                for (i = fakeArr.length - 1; i > 0; i--) {
+                    j = Math.floor(Math.random() * (i + 1));
+                    x = fakeArr[i];
+                    fakeArr[i] = fakeArr[j];
+                    fakeArr[j] = x;
+                }
+                
+                this.setState({
+                    choices: fakeArr,
+                    newArr: true
+                })
+            }
         }
-        
-        return fakeArr
+
     }
 
     componentDidMount(){
         this.setState({
-            correct: []
+            correct: [],
+            showAnswer: false
         })
     }
 
     render(){
-        let choicesArr = this.mixUpArr()
-        console.log(this.props.currentUser)
-        
+        this.mixUpArr()
         return(
             <div>
                 <h1>{this.props.question}</h1>
-                {choicesArr.map(c => 
-                    <p onClick={this.clickAnswer}>
+                {this.state.choices.map(c => 
+                    <p onClick={this.clickAnswer} >
                         {c}
                     </p>
                 )}

@@ -5,6 +5,7 @@ import Maneuvers from '../component/Maneuvers'
 import Login from '../component/Login'
 import Paperwork from '../component/Paperwork'
 import Quiz from '../component/Quiz'
+import Timer from '../component/Timer'
 
 class Container extends React.Component {
     render(){
@@ -24,6 +25,10 @@ class Container extends React.Component {
 
                 <Route path='/practice_test' render={() => 
                     <Quiz currentUser={this.props.currentUser}/>
+                } />
+
+                <Route path='/my_hours' render={() => 
+                    <Timer currentUser={this.props.currentUser}/>
                 } />
 
                 <Route path='/login' render={() =>
