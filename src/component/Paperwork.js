@@ -3,16 +3,19 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 class Paperwork extends React.Component {
     state = {
-        checkedOff: null
+        checkedOff: false,
+        myPaperwork: []
     }
 
 
     checkedItem = (e) => {
-        this.state.checkedOff ? this.fetchDeleteUserPaperwork() : this.fetchAddUserPaperwork()
+        e.persist()
+        this.state.checkedOff ? this.fetchDeleteUserPaperwork(e) : this.fetchAddUserPaperwork(e)
     }
 
-    fetchAddUserPaperwork = () => {
-        console.log('hello')
+    fetchAddUserPaperwork = (e) => {
+        e.preventDefault()
+        console.log('adding')
         fetch(`http://localhost:3000/user_dmv_paperworks`, {
             method: 'POST',
             headers: {
@@ -21,35 +24,69 @@ class Paperwork extends React.Component {
             },
             body: JSON.stringify({
                 'user_id': this.props.currentUser.id,
-                'dmv_paperwork_id': this.props.paperWorkObj.id
+                'dmv_paperwork_id': parseFloat(e.target.id)
             })
         })
         .then(res => res.json ())
-        .then(data => this.setState({
-            checkedOff: true
-        }))
+        .then(data => {
+            console.log(data)
+            this.setState({
+                checkedOff: true,
+                myPaperwork: [...this.state.myPaperwork, data]
+            })
+        
+        })
     }
 
-    fetchDeleteUserPaperwork = () => {
-        console.log('hello')
+    fetchDeleteUserPaperwork = (e) => {
+        e.preventDefault()
+        console.log('deleting')
+        let deleteMe = this.state.myPaperwork.filter(pw => pw.user_id === this.props.currentUser.id && pw.dmv_paperwork_id === parseInt(e.target.id))
+        // debugger
+        fetch(`http://localhost:3000/user_dmv_paperworks/${deleteMe[0].id}`, {
+            method: 'DELETE'
+        })
+        .then(data => {
+            if (this.state.myPaperwork.length === 0) {
+                this.setState({
+                checkedOff: false,
+                myPaperwork: []
+            })
+            } else {
+                this.setState({
+                    checkedOff: false,
+                    myPaperwork: this.state.myPaperwork.filter(pw => pw.id !== deleteMe[0].id)
+                })
+            }
+        })
+            
+            
+        
     } 
 
     componentDidMount(){
         fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/paperworks`)
         .then(res => res.json())
-        .then(data => this.setState({checkedOff: true}))
-        .catch(this.setState({
-            checkedOff: false
-        }))
+        .then(data => {
+            if(data === null){
+                this.setState({
+                    checkedOff: false
+                })
+            } else {
+                this.setState({
+                    checkedOff: true,
+                    myPaperwork: [data]
+                })
+            }
+        })
     }
 
     render(){
-        console.log(this.props.currentUser)
         return(
             <div>
                 <ListGroup>
-                    <ListGroup.Item name='item' value={this.props.paperWorkObj.id} style={this.state.checkedOff ? {color: 'green'} : {color: 'red'}}>
-                        <p onClick={this.checkedItem}>{this.props.paperWorkObj.name}</p>
+                    <ListGroup.Item name='item'  style={this.state.checkedOff ? {color: 'green'} : {color: 'red'}}>
+                        <p onClick={this.checkedItem} id={this.props.paperWorkObj.id} >{this.props.paperWorkObj.name}</p>
                         <br/>
                         <a href={this.props.paperWorkObj.url}>This is the {this.props.paperWorkObj.name} link</a>
                     </ListGroup.Item>
