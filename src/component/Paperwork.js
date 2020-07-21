@@ -2,15 +2,20 @@ import React from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 class Paperwork extends React.Component {
-    state = {
-        checkedOff: false,
-        myPaperwork: []
+    constructor(props){
+        super(props)
+        this.state = {
+            checkedOff: [],
+            myPaperwork: [],
+            paperwork: props.paperwork,
+            index: 0
+        }
     }
 
 
     checkedItem = (e) => {
         e.persist()
-        this.state.checkedOff ? this.fetchDeleteUserPaperwork(e) : this.fetchAddUserPaperwork(e)
+        this.state.checkedOff[this.state.index] ? this.fetchDeleteUserPaperwork(e) : this.fetchAddUserPaperwork(e)
     }
 
     fetchAddUserPaperwork = (e) => {
@@ -56,6 +61,7 @@ class Paperwork extends React.Component {
                 this.setState({
                     checkedOff: false,
                     myPaperwork: this.state.myPaperwork.filter(pw => pw.id !== deleteMe[0].id)
+                    
                 })
             }
         })
@@ -68,24 +74,46 @@ class Paperwork extends React.Component {
         fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/paperworks`)
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             if(data === null){
+                // this.setState({
+                //     checkedOff: this.props.paperwork.fill(false)  
+                // })
                 this.setState({
-                    checkedOff: false
+                    checkedOff: this.state.paperwork.fill(false)
                 })
+
             } else {
                 this.setState({
-                    checkedOff: true,
                     myPaperwork: [data]
-                })
+                }, this.paperwork())
             }
         })
     }
 
+    paperwork = () => {
+        let newArr = this.state.paperwork
+        let falsePaperworkArr = this.state.paperwork.fill(false)
+        let num = 0
+        for(let i = 0; i < this.state.myPaperwork.length; i++){
+            num = newArr.findIndex(pw => pw.id === this.state.myPaperwork[i].dmv_paperwork_id)
+            console.log(num)
+            
+            falsePaperworkArr[num] = true
+        }
+        debugger
+        this.setState({
+            index: num,
+            checkedOff: falsePaperworkArr
+        })
+    }
+
     render(){
+        
         return(
             <div>
                 <ListGroup>
-                    <ListGroup.Item name='item'  style={this.state.checkedOff ? {color: 'green'} : {color: 'red'}}>
+                    <ListGroup.Item name='item'  style={this.state.checkedOff[this.state.index] ? {color: 'green'} : {color: 'red'}}>
                         <p onClick={this.checkedItem} id={this.props.paperWorkObj.id} >{this.props.paperWorkObj.name}</p>
                         <br/>
                         <a href={this.props.paperWorkObj.url}>This is the {this.props.paperWorkObj.name} link</a>
