@@ -1,21 +1,22 @@
 import React from 'react'
-import ListGroup from 'react-bootstrap/ListGroup'
+
+import Form from 'react-bootstrap/Form'
 
 class Paperwork extends React.Component {
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
-            checkedOff: [],
-            myPaperwork: [],
-            paperwork: props.paperwork,
-            index: 0
+            checkedOff: false,
+            myPapers: []
+            
+            
         }
     }
 
 
     checkedItem = (e) => {
         e.persist()
-        this.state.checkedOff[this.state.index] ? this.fetchDeleteUserPaperwork(e) : this.fetchAddUserPaperwork(e)
+        this.state.checkedOff ? this.fetchDeleteUserPaperwork(e) : this.fetchAddUserPaperwork(e)
     }
 
     fetchAddUserPaperwork = (e) => {
@@ -29,15 +30,14 @@ class Paperwork extends React.Component {
             },
             body: JSON.stringify({
                 'user_id': this.props.currentUser.id,
-                'dmv_paperwork_id': parseFloat(e.target.id)
+                'dmv_paperwork_id': this.props.paperWorkObj.id
             })
         })
         .then(res => res.json ())
         .then(data => {
-            console.log(data)
             this.setState({
                 checkedOff: true,
-                myPaperwork: [...this.state.myPaperwork, data]
+                myPapers: [...this.state.myPapers, data]
             })
         
         })
@@ -46,21 +46,21 @@ class Paperwork extends React.Component {
     fetchDeleteUserPaperwork = (e) => {
         e.preventDefault()
         console.log('deleting')
-        let deleteMe = this.state.myPaperwork.filter(pw => pw.user_id === this.props.currentUser.id && pw.dmv_paperwork_id === parseInt(e.target.id))
+        let deleteMe = this.state.myPapers.filter(pw => pw.user_id === this.props.currentUser.id && pw.dmv_paperwork_id === this.props.paperWorkObj.id)
         // debugger
         fetch(`http://localhost:3000/user_dmv_paperworks/${deleteMe[0].id}`, {
             method: 'DELETE'
         })
         .then(data => {
-            if (this.state.myPaperwork.length === 0) {
+            if (this.state.myPapers.length === 0) {
                 this.setState({
                 checkedOff: false,
-                myPaperwork: []
+                myPapers: []
             })
-            } else {
+            } else if (this.state.myPapers.length > 0){
                 this.setState({
                     checkedOff: false,
-                    myPaperwork: this.state.myPaperwork.filter(pw => pw.id !== deleteMe[0].id)
+                    myPapers: this.state.myPapers.filter(pw => pw.id !== deleteMe[0].id)
                     
                 })
             }
@@ -71,6 +71,7 @@ class Paperwork extends React.Component {
     } 
 
     componentDidMount(){
+        console.log('mounting')
         fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/paperworks`)
         .then(res => res.json())
         .then(data => {
@@ -80,46 +81,45 @@ class Paperwork extends React.Component {
                 //     checkedOff: this.props.paperwork.fill(false)  
                 // })
                 this.setState({
-                    checkedOff: this.state.paperwork.fill(false)
+                    checkedOff: false
                 })
 
             } else {
                 this.setState({
-                    myPaperwork: [data]
+                    myPapers: data
                 }, this.paperwork())
             }
         })
+
+    }
+
+    componentWillUnmount(){
+        this.props.updateMyPaper(this.state.myPapers)
     }
 
     paperwork = () => {
-        let newArr = this.state.paperwork
-        let falsePaperworkArr = this.state.paperwork.fill(false)
-        let num = 0
-        for(let i = 0; i < this.state.myPaperwork.length; i++){
-            num = newArr.findIndex(pw => pw.id === this.state.myPaperwork[i].dmv_paperwork_id)
-            console.log(num)
-            
-            falsePaperworkArr[num] = true
+        for(let i = 0; i < this.props.myPaperwork.length; i++){
+            if (this.props.myPaperwork[i].id === this.props.paperWorkObj.id) {
+                this.setState({checkedOff: true})
+            }
         }
-        debugger
-        this.setState({
-            index: num,
-            checkedOff: falsePaperworkArr
-        })
+        
+        
     }
 
     render(){
         
         return(
             <div>
-                <ListGroup>
-                    <ListGroup.Item name='item'  style={this.state.checkedOff[this.state.index] ? {color: 'green'} : {color: 'red'}}>
-                        <p onClick={this.checkedItem} id={this.props.paperWorkObj.id} >{this.props.paperWorkObj.name}</p>
+                <Form>
+                    <Form.Check type='checkbox' id={`check-api-checkbox`} isValid>
+                        <Form.Check.Input type='checkbox' checked={this.state.checkedOff ? 'checked' : null}  onClick={this.checkedItem}/>
+                        <Form.Check.Label>{this.props.paperWorkObj.name}</Form.Check.Label>
                         <br/>
-                        <a href={this.props.paperWorkObj.url}>This is the {this.props.paperWorkObj.name} link</a>
-                    </ListGroup.Item>
-                </ListGroup>
-                {/* <ProgressBar now={} label={`${now}%`} />; */}
+                        <a href={this.props.paperWorkObj.url}>{this.props.paperWorkObj.name} URL</a>
+                        <Form.Control.Feedback type="valid" href={this.props.paperWorkObj.url}>{this.props.paperWorkObj.name} Url </Form.Control.Feedback>
+                    </Form.Check>
+                </Form>
                 
             </div>
         )

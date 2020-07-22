@@ -19,7 +19,8 @@ class App extends React.Component {
     this.state = {
       user: null,
       paperwork: [],
-      questions: []
+      questions: [],
+      myPaperwork: []
     }
   }
 
@@ -52,7 +53,7 @@ class App extends React.Component {
 
   currentUser = (user) => {
     console.log(user)
-    this.setState({user: user})
+    this.setState({user: user, myPaperwork: user.dmv_paperworks})
   }
 
   logout = () => {
@@ -60,6 +61,13 @@ class App extends React.Component {
       user: null
     })
     localStorage.removeItem('jwt')
+  }
+
+  updateMyPaper = (paperwork) => {
+    // debugger
+    this.setState({
+      myPaperwork: paperwork
+    })
   }
 
   render(){
@@ -78,7 +86,7 @@ class App extends React.Component {
           } />
 
           <Route path='/paperwork' render={() => 
-            this.state.user ? <Container component={Paperwork} paperwork={this.state.paperwork} currentUser={this.state.user}/> : <Redirect to='login'/>
+            this.state.user ? <Container component={Paperwork} paperwork={this.state.paperwork} myPaperwork={this.state.myPaperwork} currentUser={this.state.user} updateMyPaper={this.updateMyPaper}/> : <Redirect to='login'/>
           } />
 
           <Route path='/practice_test' render={() => 
