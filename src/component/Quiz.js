@@ -58,7 +58,7 @@ class Quiz extends React.Component{
                 
                 {this.state.takingQuiz && this.state.trivia.length === this.state.i
                 ?
-                <Results newQuiz={this.newQuiz} correct={this.state.numberCorrect} allQuestions={this.state.i} currentUser={this.props.currentUser}/>
+                <Results newQuiz={this.newQuiz} correct={this.state.numberCorrect} allQuestions={this.state.i} currentUser={this.props.currentUser} trivia={this.state.trivia}/>
                 :
                 this.state.takingQuiz
                 ?

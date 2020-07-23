@@ -92,11 +92,14 @@ class TriviaQuestions extends React.Component{
 
     render(){
         this.mixUpArr()
+        if (this.state.showAnswer === true){
+            
+        }
         return(
             <div>
                 <h1>{this.props.question}</h1>
                 {this.state.choices.map(c => 
-                    <p onClick={this.clickAnswer} >
+                    <p onClick={this.clickAnswer} value={c} style={this.state.showAnswer ? }>
                         {c}
                     </p>
                 )}
