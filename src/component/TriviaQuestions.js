@@ -1,4 +1,5 @@
 import React from 'react'
+import Choices from './Choices'
 
 class TriviaQuestions extends React.Component{
 
@@ -92,16 +93,19 @@ class TriviaQuestions extends React.Component{
 
     render(){
         this.mixUpArr()
+        let colorAnswer = ''
         if (this.state.showAnswer === true){
-            
+
+        } else {
+            colorAnswer = {background: 'white'}
         }
         return(
             <div>
                 <h1>{this.props.question}</h1>
                 {this.state.choices.map(c => 
-                    <p onClick={this.clickAnswer} value={c} style={this.state.showAnswer ? }>
-                        {c}
-                    </p>
+                    <Choices clickAnswer={this.clickAnswer} choiceObj={c} correct={this.props.correct} showAnswer={this.state.showAnswer}/>
+                        
+                    
                 )}
                 
                 
