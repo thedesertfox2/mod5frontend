@@ -15,9 +15,7 @@ class TriviaQuestions extends React.Component{
     
 
     clickAnswer = (e) => {
-        // debugger
         if (this.state.showAnswer === true){
-            // debugger
             if (this.state.correct[this.state.correct.length - 1] === this.props.correct){
                 console.log('correct')
                 this.setState({
@@ -33,7 +31,6 @@ class TriviaQuestions extends React.Component{
                 
             }
         } else {
-            // debugger
             if (e.target.innerText === this.props.correct){
                 console.log('correct')
                 this.setState({
@@ -101,7 +98,6 @@ class TriviaQuestions extends React.Component{
                 {this.state.choices.map(c => 
                     <Choices clickAnswer={this.clickAnswer} choiceObj={c} correct={this.props.correct} showAnswer={this.state.showAnswer} newArr={this.state.newArr}/>
                 )}
-                {this.state.showAnswer ? <p style={{background: 'blue', color: 'white'}}> Answer: {this.props.correct}</p> : null}
             </div>
         )
     }
