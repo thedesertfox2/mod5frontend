@@ -93,22 +93,12 @@ class TriviaQuestions extends React.Component{
 
     render(){
         this.mixUpArr()
-        let colorAnswer = ''
-        if (this.state.showAnswer === true){
-
-        } else {
-            colorAnswer = {background: 'white'}
-        }
         return(
             <div>
                 <h1>{this.props.question}</h1>
                 {this.state.choices.map(c => 
                     <Choices clickAnswer={this.clickAnswer} choiceObj={c} correct={this.props.correct} showAnswer={this.state.showAnswer}/>
-                        
-                    
                 )}
-                
-                
             </div>
         )
     }

@@ -37,7 +37,7 @@ class Paperwork extends React.Component {
         .then(data => {
             this.setState({
                 checkedOff: true,
-                myPapers: [...this.state.myPapers, data]
+                myPapers: data.dmv_paperworks
             })
         
         })
@@ -46,9 +46,10 @@ class Paperwork extends React.Component {
     fetchDeleteUserPaperwork = (e) => {
         e.preventDefault()
         console.log('deleting')
-        let deleteMe = this.state.myPapers.filter(pw => pw.user_id === this.props.currentUser.id && pw.dmv_paperwork_id === this.props.paperWorkObj.id)
         // debugger
-        fetch(`http://localhost:3000/user_dmv_paperworks/${deleteMe[0].id}`, {
+        let deleteMe = this.state.myPapers.filter(pw => pw.id === this.props.paperWorkObj.id)
+        // debugger
+        fetch(`http://localhost:3000/user_dmv_paperworks/${deleteMe[0].id},${this.props.currentUser.id}`, {
             method: 'DELETE'
         })
         .then(data => {
@@ -86,7 +87,7 @@ class Paperwork extends React.Component {
 
             } else {
                 this.setState({
-                    myPapers: data
+                    myPapers: data.dmv_paperworks
                 }, this.paperwork())
             }
         })
@@ -98,6 +99,7 @@ class Paperwork extends React.Component {
     }
 
     paperwork = () => {
+        // debugger
         for(let i = 0; i < this.props.myPaperwork.length; i++){
             if (this.props.myPaperwork[i].id === this.props.paperWorkObj.id) {
                 this.setState({checkedOff: true})
