@@ -18,14 +18,14 @@ class App extends React.Component {
     super()
     this.state = {
       user: null,
-      paperwork: [],
+      
       questions: [],
-      myPaperwork: []
+      myPaperworks: []
     }
   }
 
   componentDidMount(){
-    this.fetchAllPaperwork()
+    // this.fetchAllPaperwork()
     this.fetchLoggedInUser()
   }
 
@@ -45,15 +45,15 @@ class App extends React.Component {
     }
   }
 
-  fetchAllPaperwork = () => {
-    fetch('http://localhost:3000/dmv_paperworks')
-    .then(res => res.json())
-    .then(allPaperwork => this.setState({paperwork: allPaperwork}))
+  updateMyPaperworks = (paperwork) => {
+    this.setState({
+      myPaperworks: paperwork
+    })
   }
 
   currentUser = (user) => {
     console.log(user)
-    this.setState({user: user, myPaperwork: user.dmv_paperworks})
+    this.setState({user: user, myPaperworks: user.dmv_paperworks})
   }
 
   logout = () => {
@@ -63,14 +63,8 @@ class App extends React.Component {
     localStorage.removeItem('jwt')
   }
 
-  updateMyPaper = (paperwork) => {
-    // debugger
-    this.setState({
-      myPaperwork: paperwork
-    })
-  }
-
   render(){
+    console.log(this.state.user)
     return (
       <div>
         <Navbar user={this.state.user} logout={this.logout}/>
@@ -86,7 +80,7 @@ class App extends React.Component {
           } />
 
           <Route path='/paperwork' render={() => 
-            this.state.user ? <Container component={Paperwork} paperwork={this.state.paperwork} myPaperwork={this.state.myPaperwork} currentUser={this.state.user} updateMyPaper={this.updateMyPaper}/> : <Redirect to='login'/>
+            this.state.user ? <Container component={Paperwork} myPaperworks={this.state.myPaperworks} currentUser={this.state.user} updateMyPaperworks={this.updateMyPaperworks}/> : <Redirect to='login'/>
           } />
 
           <Route path='/practice_test' render={() => 

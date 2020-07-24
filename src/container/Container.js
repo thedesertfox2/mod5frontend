@@ -8,7 +8,23 @@ import Quiz from '../component/Quiz'
 import Timer from '../component/Timer'
 
 class Container extends React.Component {
+
+    state = {
+        dmvPaperworks: []
+    }
+    
+    fetchAllPaperwork = () => {
+        fetch('http://localhost:3000/dmv_paperworks')
+        .then(res => res.json())
+        .then(allPaperwork => this.setState({dmvPaperworks: allPaperwork}))
+    }
+
+    componentDidMount(){
+        this.fetchAllPaperwork()
+    }
+
     render(){
+        console.log(this.props.currentUser)
         return(
             <Switch>
                 <Route path='/maneuvers' render={() =>
@@ -20,13 +36,13 @@ class Container extends React.Component {
                 } />
 
                 <Route path='/paperwork' render={() =>
-                    this.props.paperwork.map(paperwork => 
+                    this.state.dmvPaperworks.map(paperwork => 
                     <Paperwork paperWorkObj={paperwork} 
                     key={paperwork.id} 
                     currentUser={this.props.currentUser} 
-                    myPaperwork={this.props.myPaperwork}
+                    myPaperworks={this.props.myPaperworks}
                     
-                    updateMyPaper={this.props.updateMyPaper}
+                    updateMyPaperworks={this.props.updateMyPaperworks}
                     />)
                 } />
 

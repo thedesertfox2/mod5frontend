@@ -6,10 +6,7 @@ class Paperwork extends React.Component {
     constructor(){
         super()
         this.state = {
-            checkedOff: false,
-            myPapers: []
-            
-            
+            checkedOff: false
         }
     }
 
@@ -35,10 +32,12 @@ class Paperwork extends React.Component {
         })
         .then(res => res.json ())
         .then(data => {
+            // debugger
+            let arr = data.dmv_paperworks
+            
             this.setState({
-                checkedOff: true,
-                myPapers: data.dmv_paperworks
-            })
+                checkedOff: true
+            }, this.props.updateMyPaperworks(arr))
         
         })
     }
@@ -47,24 +46,17 @@ class Paperwork extends React.Component {
         e.preventDefault()
         console.log('deleting')
         // debugger
-        let deleteMe = this.state.myPapers.filter(pw => pw.id === this.props.paperWorkObj.id)
+        let deleteMe = this.props.myPaperworks.filter(pw => pw.id === this.props.paperWorkObj.id)
+        let dontDeleteMe = this.props.myPaperworks.filter(pw => pw.id !== this.props.paperWorkObj.id)
         // debugger
         fetch(`http://localhost:3000/user_dmv_paperworks/${deleteMe[0].id},${this.props.currentUser.id}`, {
             method: 'DELETE'
         })
         .then(data => {
-            if (this.state.myPapers.length === 0) {
                 this.setState({
-                checkedOff: false,
-                myPapers: []
-            })
-            } else if (this.state.myPapers.length > 0){
-                this.setState({
-                    checkedOff: false,
-                    myPapers: this.state.myPapers.filter(pw => pw.id !== deleteMe[0].id)
-                    
-                })
-            }
+                checkedOff: false
+            }, this.props.updateMyPaperworks(dontDeleteMe))
+            
         })
             
             
@@ -72,41 +64,18 @@ class Paperwork extends React.Component {
     } 
 
     componentDidMount(){
-        console.log('mounting')
-        fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/paperworks`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data === null){
-                // this.setState({
-                //     checkedOff: this.props.paperwork.fill(false)  
-                // })
-                this.setState({
-                    checkedOff: false
-                })
-
-            } else {
-                this.setState({
-                    myPapers: data.dmv_paperworks
-                }, this.paperwork())
-            }
-        })
+        this.paperwork()
+        
 
     }
 
-    componentWillUnmount(){
-        this.props.updateMyPaper(this.state.myPapers)
-    }
 
     paperwork = () => {
-        // debugger
-        for(let i = 0; i < this.props.myPaperwork.length; i++){
-            if (this.props.myPaperwork[i].id === this.props.paperWorkObj.id) {
+        for(let i = 0; i < this.props.myPaperworks.length; i++){
+            if (this.props.myPaperworks[i].id === this.props.paperWorkObj.id) {
                 this.setState({checkedOff: true})
             }
         }
-        
-        
     }
 
     render(){

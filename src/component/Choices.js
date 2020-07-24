@@ -27,32 +27,57 @@ class Choices extends React.Component {
 
     renderAnswer = (e) => {
         e.persist()
-        if(e.target.innerText === this.props.correct){
-            this.setState({
-
-                color: 'green',
-                choice: e.target.innerText
-            }, this.props.clickAnswer(e))
-        } else if (e.target.innerText !== this.props.correct) {
-            this.setState({
-
-                color: 'red',
-                choice: e.target.innerText
-        }, this.props.clickAnswer(e))
-    }}
+    }
 
     renderNewQuestion = (e) => {
         e.persist()
-        this.setState({
-            color: 'white',
-            choice: ''
-        }, this.props.clickAnswer(e))
+    }
+
+    renderColor = (e) => {
+        e.persist()
+        // debugger
+        if (!this.props.showAnswer){
+            if(e.target.innerText === this.props.correct){
+                this.setState({
+                    color: 'green',
+                    choice: e.target.innerText
+                }, () => this.props.clickAnswer(e))
+            } else if (e.target.innerText !== this.props.correct) {
+                this.setState({
+                    color: 'red',
+                    choice: e.target.innerText
+            }, () => this.props.clickAnswer(e))
+        }
+        } else {
+                // debugger
+                this.setState({
+                    color: 'white',
+                    choice: ''
+                }, () => this.props.clickAnswer(e))
+            }
+        }
+
+    color = () => {
+        // if state color is red AND this is the correct answer --> color should be green
+        // if state color is red AND this is NOT the correct answer but it IS the answer you clicked on --> color should be red
+        // otherwise color should be white
+        if (this.props.showAnswer && this.props.correct === this.props.choiceObj) {
+            return "green"
+        } else if (this.props.showAnswer && this.state.choice === this.props.choiceObj) {
+
+            return "red"
+        } else {
+            return "white"
+        }
+
     }
 
     render() {
+        
+        
         return(
             <div>
-                <p onClick={this.props.showAnswer ? (e) => this.renderNewQuestion(e) : (e) => this.renderAnswer(e)} value={this.props.choiceObj} style={{background: this.state.color}}>{this.props.choiceObj}</p>
+                <p onClick={this.renderColor} value={this.props.choiceObj} style={{background: this.color()}}>{this.props.choiceObj}</p>
             </div>
         )
     }

@@ -4,7 +4,7 @@ import Choices from './Choices'
 class TriviaQuestions extends React.Component{
 
     state = {
-        correct: [],
+        correctAnswers: [],
         showAnswer: false, 
         choices: [],
         newArr: false
@@ -15,8 +15,9 @@ class TriviaQuestions extends React.Component{
     
 
     clickAnswer = (e) => {
-
+        // debugger
         if (this.state.showAnswer === true){
+            // debugger
             if (this.state.correct[this.state.correct.length - 1] === this.props.correct){
                 console.log('correct')
                 this.setState({
@@ -32,11 +33,12 @@ class TriviaQuestions extends React.Component{
                 
             }
         } else {
+            // debugger
             if (e.target.innerText === this.props.correct){
                 console.log('correct')
                 this.setState({
                     showAnswer: true,
-                    correct: [...this.state.correct, this.props.correct]
+                    correct: [...this.state.correctAnswers, this.props.correct]
                 })
             } else {
                 console.log('incorrect')
@@ -97,8 +99,9 @@ class TriviaQuestions extends React.Component{
             <div>
                 <h1>{this.props.question}</h1>
                 {this.state.choices.map(c => 
-                    <Choices clickAnswer={this.clickAnswer} choiceObj={c} correct={this.props.correct} showAnswer={this.state.showAnswer}/>
+                    <Choices clickAnswer={this.clickAnswer} choiceObj={c} correct={this.props.correct} showAnswer={this.state.showAnswer} newArr={this.state.newArr}/>
                 )}
+                {this.state.showAnswer ? <p style={{background: 'blue', color: 'white'}}> Answer: {this.props.correct}</p> : null}
             </div>
         )
     }
