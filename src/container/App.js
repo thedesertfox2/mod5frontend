@@ -10,6 +10,7 @@ import Login from '../component/Login'
 import Paperwork from '../component/Paperwork'
 import Quiz from '../component/Quiz'
 import Timer from '../component/Timer'
+import Profile from '../component/Profile'
 
 
 class App extends React.Component {
@@ -64,7 +65,7 @@ class App extends React.Component {
   }
 
   render(){
-    console.log(this.state.user)
+    // console.log(this.state.user)
     return (
       <div>
         <Navbar user={this.state.user} logout={this.logout}/>
@@ -89,6 +90,10 @@ class App extends React.Component {
 
           <Route path='/my_hours' render={() => 
             this.state.user ? <Container component={Timer} currentUser={this.state.user}/> : <Redirect to='login'/>
+          } />
+
+          <Route path='/profile' render={() => 
+            this.state.user ? <Container component={Profile} currentUser={this.state.user} updateUser={this.currentUser}/> : <Redirect to='login'/>
           } />
 
           <Route path='/login' render={() => 

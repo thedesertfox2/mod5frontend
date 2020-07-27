@@ -60,6 +60,14 @@ const NavBar = (props) => {
                 </Nav.Link>
 
                 <Nav.Link >
+                    <Link to='/profile'>
+                        <div style={{color: 'white'}}>
+                            Profile
+                        </div>
+                    </Link>
+                </Nav.Link>
+
+                <Nav.Link >
                     {
                         props.user ? 
                         <Link to='/home'>

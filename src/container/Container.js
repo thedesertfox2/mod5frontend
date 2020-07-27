@@ -6,6 +6,7 @@ import Login from '../component/Login'
 import Paperwork from '../component/Paperwork'
 import Quiz from '../component/Quiz'
 import Timer from '../component/Timer'
+import Profile from '../component/Profile'
 
 class Container extends React.Component {
 
@@ -24,7 +25,7 @@ class Container extends React.Component {
     }
 
     render(){
-        console.log(this.props.currentUser)
+        // console.log(this.props.currentUser)
         return(
             <Switch>
                 <Route path='/maneuvers' render={() =>
@@ -52,6 +53,10 @@ class Container extends React.Component {
 
                 <Route path='/my_hours' render={() => 
                     <Timer currentUser={this.props.currentUser}/>
+                } />
+
+                <Route path='/profile' render={() => 
+                    <Profile currentUser={this.props.currentUser} updateUser={this.props.updateUser}/>
                 } />
 
                 <Route path='/login' render={() =>

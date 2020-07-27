@@ -65,8 +65,6 @@ class Paperwork extends React.Component {
 
     componentDidMount(){
         this.paperwork()
-        
-
     }
 
 
@@ -79,7 +77,6 @@ class Paperwork extends React.Component {
     }
 
     render(){
-        
         return(
             <div>
                 <Form>
