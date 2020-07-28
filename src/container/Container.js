@@ -33,7 +33,7 @@ class Container extends React.Component {
                 } />
 
                 <Route path='/home' render={() =>
-                    <Homepage />
+                    <Homepage currentUser={this.props.currentUser}/>
                 } />
 
                 <Route path='/paperwork' render={() =>

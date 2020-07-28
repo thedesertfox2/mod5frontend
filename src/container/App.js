@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
-import Navbar from '../component/Navbar'
+
 import Container from './Container'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import Maneuvers from '../component/Maneuvers'
@@ -11,6 +11,7 @@ import Paperwork from '../component/Paperwork'
 import Quiz from '../component/Quiz'
 import Timer from '../component/Timer'
 import Profile from '../component/Profile'
+import NavBarContainer from './NavBarContainer'
 
 
 class App extends React.Component {
@@ -65,10 +66,10 @@ class App extends React.Component {
   }
 
   render(){
-    // console.log(this.state.user)
+    
     return (
       <div>
-        <Navbar user={this.state.user} logout={this.logout}/>
+        <NavBarContainer user={this.state.user}/>
 
         <Switch>
 
@@ -77,7 +78,7 @@ class App extends React.Component {
           } />
 
           <Route path='/home' render={() => 
-            this.state.user ? <Container component={Homepage}/> : <Redirect to='login'/>
+            this.state.user ? <Container component={Homepage} currentUser={this.state.user}/> : <Redirect to='login'/>
           } />
 
           <Route path='/paperwork' render={() => 
