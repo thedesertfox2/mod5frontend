@@ -37,6 +37,7 @@ class Container extends React.Component {
                 } />
 
                 <Route path='/paperwork' render={() =>
+
                     this.state.dmvPaperworks.map(paperwork => 
                     <Paperwork paperWorkObj={paperwork} 
                     key={paperwork.id} 
@@ -60,7 +61,7 @@ class Container extends React.Component {
                 } />
 
                 <Route path='/login' render={() =>
-                    <Login currentUser={this.props.currentUser}/>
+                    <Login updateUser={this.props.updateUser}/>
                 } />
             </Switch>
         )

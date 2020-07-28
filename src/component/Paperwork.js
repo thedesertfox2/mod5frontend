@@ -77,15 +77,15 @@ class Paperwork extends React.Component {
     }
 
     render(){
+        
         return(
             <div>
                 <Form>
                     <Form.Check type='checkbox' id={`check-api-checkbox`} isValid>
                         <Form.Check.Input type='checkbox' checked={this.state.checkedOff ? 'checked' : null}  onClick={this.checkedItem}/>
-                        <Form.Check.Label>{this.props.paperWorkObj.name}</Form.Check.Label>
+                        <Form.Check.Label><h6>{this.props.paperWorkObj.name}</h6> {this.props.paperWorkObj.description ? <p>({this.props.paperWorkObj.description})</p> : null}</Form.Check.Label>
                         <br/>
-                        <a href={this.props.paperWorkObj.url}>{this.props.paperWorkObj.name} URL</a>
-                        <Form.Control.Feedback type="valid" href={this.props.paperWorkObj.url}>{this.props.paperWorkObj.name} Url </Form.Control.Feedback>
+            
                     </Form.Check>
                 </Form>
                 

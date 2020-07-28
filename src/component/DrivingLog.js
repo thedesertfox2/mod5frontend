@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactPlayer from 'react-player/youtube'
 import Maneuvers from './Maneuvers'
 
 class DrivingLog extends React.Component {

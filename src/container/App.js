@@ -11,7 +11,7 @@ import Paperwork from '../component/Paperwork'
 import Quiz from '../component/Quiz'
 import Timer from '../component/DrivingLog'
 import Profile from '../component/Profile'
-import NavBarContainer from './NavBarContainer'
+import Navbar from '../component/Navbar'
 
 
 class App extends React.Component {
@@ -69,7 +69,7 @@ class App extends React.Component {
     
     return (
       <div>
-        <NavBarContainer user={this.state.user}/>
+        <Navbar user={this.state.user} logout={this.logout}/>
 
         <Switch>
 
@@ -98,7 +98,7 @@ class App extends React.Component {
           } />
 
           <Route path='/login' render={() => 
-            this.state.user ? <Redirect to='/home'/> : <Container component={Login} currentUser={this.currentUser}/>
+            this.state.user ? <Redirect to='/home'/> : <Container component={Login} updateUser={this.currentUser}/>
           } />
 
         </Switch>

@@ -32,13 +32,14 @@ class Login extends React.Component{
                 alert(data.message)
             } else {
                 localStorage.setItem('jwt', data.token)
-                this.props.currentUser(data.user_data)
+                this.props.updateUser(data.user_data)
             }
         })
     }
 
 
     render(){
+        // debugger
         return(
             <form onSubmit={this.onLoginSubmit}>
                 <label>Username: </label>
