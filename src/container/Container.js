@@ -5,7 +5,7 @@ import Maneuvers from '../component/Maneuvers'
 import Login from '../component/Login'
 import Paperwork from '../component/Paperwork'
 import Quiz from '../component/Quiz'
-import Timer from '../component/Timer'
+import Timer from '../component/DrivingLog'
 import Profile from '../component/Profile'
 
 class Container extends React.Component {

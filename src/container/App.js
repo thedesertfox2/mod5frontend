@@ -9,7 +9,7 @@ import Homepage from '../component/Homepage'
 import Login from '../component/Login'
 import Paperwork from '../component/Paperwork'
 import Quiz from '../component/Quiz'
-import Timer from '../component/Timer'
+import Timer from '../component/DrivingLog'
 import Profile from '../component/Profile'
 import NavBarContainer from './NavBarContainer'
 

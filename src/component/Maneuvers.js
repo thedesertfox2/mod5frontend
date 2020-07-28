@@ -11,14 +11,18 @@ import Parallel from '../videos/parallel.mp4'
 import ParallelPicture from '../images/parallel.webp'
 import ThreePoint from '../videos/threepoint.mp4'
 import ThreePointPicture from '../images/threepoint.webp'
+import ReactPlayer from 'react-player/youtube'
 
 
 class Maneuvers extends React.Component {
     render(){
         return(
             <div>
+                <ReactPlayer url='https://www.youtube.com/watch?v=uG0haUpAEX4'/>
+
+
                 <video width='320' height='240' controls poster={PilPicture}>
-                    <source src={Pil} type='video/mp4' /> 
+                    <source url='https://www.youtube.com/watch?v=uG0haUpAEX4' type='video/mp4' /> 
                 </video>
                 <p>Pull in Parking on the left</p>
                 <br/>
