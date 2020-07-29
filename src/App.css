@@ -86,5 +86,65 @@
 .paperwork-title {
   position: relative;
   left: 515px;
+  top: 50px;
+  color: #00b300;
 }
 
+.homepage {
+  position: relative;
+  left: 300px;
+  top: 300px;
+  font-size: 3em;
+  color: #00b300;
+}
+
+.fontsize-header-green {
+  font-size: 3em;
+  color: #00b300;
+  position: relative;
+  right: 250px;
+  
+}
+
+.results-header {
+  position: relative;
+  left: 200px;
+  font-size: 3em;
+  color: #00b300;
+  top: 50px
+}
+
+.green-color {
+  color: #00b300;
+}
+
+.results-answer {
+  position: relative;
+  top: 20px;
+  left: 100px;
+}
+
+.centered-triviaquestions {
+  position: relative;
+  left: 600px;
+  top: 300px;
+}
+
+.button-center {
+  position: relative;
+  left: 600px;
+  background: #00b300;
+  border-radius: 25px
+}
+
+.form-check-input {
+  position: absolute;
+  margin-top: .3rem;
+  margin-left: -1.25rem;
+  transform: scale(3);
+} 
+
+.form-check-input:after {
+  content: '';
+  color: #00b300;
+}

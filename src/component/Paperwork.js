@@ -82,7 +82,7 @@ class Paperwork extends React.Component {
                 <Form>
                     <Form.Check type='checkbox' id={`check-api-checkbox`} isValid>
                         <Form.Check.Input type='checkbox' checked={this.state.checkedOff ? 'checked' : null}  onClick={this.checkedItem}/>
-                        <Form.Check.Label><h6>{this.props.paperWorkObj.name}</h6> {this.props.paperWorkObj.description ? <p>({this.props.paperWorkObj.description})</p> : null}</Form.Check.Label>
+                        <Form.Check.Label><h5>{this.props.paperWorkObj.name}</h5> {this.props.paperWorkObj.description ? <p style={{color: '#00b300'}}>({this.props.paperWorkObj.description})</p> : null}</Form.Check.Label>
                         <br/>
             
                     </Form.Check>

@@ -94,7 +94,7 @@ class TriviaQuestions extends React.Component{
         this.mixUpArr()
         return(
             <div>
-                <h1 style={{position: 'relative', left: '5px'}}>{this.props.question}</h1>
+                <h1 style={{textAlign: 'center', position: 'relative', top: '100px'}}>{this.props.question}</h1>
                 {this.state.choices.map(c => 
                     <Choices clickAnswer={this.clickAnswer} choiceObj={c} correct={this.props.correct} showAnswer={this.state.showAnswer} newArr={this.state.newArr}/>
                 )}

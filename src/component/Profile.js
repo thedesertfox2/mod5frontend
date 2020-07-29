@@ -53,15 +53,15 @@ class Profile extends React.Component{
 
     render(){
         return(
-            <div style={{position: 'relative', left: '5px'}}>
-                Your Name: {this.props.currentUser.name}
+            <div style={{position: 'relative', textAlign: 'center'}}>
+                <h4>Your Name:</h4><p style={{color: '#00b300', fontSize: '2em'}}>{this.props.currentUser.name}</p>
                 <br/>
-                Your Birthday: {this.state.age}
+                <h4>Your Age:</h4><p style={{color: '#00b300', fontSize: '2em'}}>{this.state.age}</p>
                 <br/>
                 <Form>
                     <Form.Check type='checkbox' id={`check-api-checkbox`} isValid>
-                        <Form.Check.Input type='checkbox' checked={this.state.checkedOff ? 'checked' : null}  onClick={this.checkedOff}/>
-                        <Form.Check.Label>Have you obtained your permit?</Form.Check.Label>
+                        <Form.Check.Input className='form-check-input' type='checkbox' checked={this.state.checkedOff ? 'checked' : null}  onClick={this.checkedOff}/>
+                        <Form.Check.Label><p style={{fontSize: '2.5em', position: 'relative', left: '10px', bottom: '20px'}}>Have you obtained your permit?</p></Form.Check.Label>
                         <Form.Control.Feedback type="valid"> </Form.Control.Feedback>
                         
                     </Form.Check>

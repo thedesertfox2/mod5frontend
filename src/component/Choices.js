@@ -62,9 +62,9 @@ class Choices extends React.Component {
         // if state color is red AND this is NOT the correct answer but it IS the answer you clicked on --> color should be red
         // otherwise color should be white
         if (this.props.showAnswer && this.props.correct === this.props.choiceObj) {
-            return "green"
+            return "#00b300"
         } else if (this.props.showAnswer && this.state.choice === this.props.choiceObj) {
-            return "red"
+            return "#E74C3C"
         } else {
             return "#D5D8DC"
         }
@@ -76,7 +76,7 @@ class Choices extends React.Component {
         
         return(
             <div>
-                <p onClick={this.renderColor} value={this.props.choiceObj} style={{background: this.color(), left: '5px', position: 'relative'}}>{this.props.choiceObj}</p>
+                <p onClick={this.renderColor} value={this.props.choiceObj} style={{border: '5px solid black', background: this.color(), textAlign: 'center', top: '200px', left: '575px', width: '300px', position: 'relative', borderRadius: '15px'}}>{this.props.choiceObj}</p>
             </div>
         )
     }

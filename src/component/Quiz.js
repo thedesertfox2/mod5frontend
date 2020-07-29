@@ -65,10 +65,10 @@ class Quiz extends React.Component{
                 this.state.trivia[this.state.i].map(trivia => 
                     <TriviaQuestions question={trivia.question} choices={trivia.choices} correct={trivia.choices.correct} nextQuestion={this.nextQuestion} currentUser={this.props.currentUser}/>)
                 :
-                <form onSubmit={this.submitQuestions}>
-                    How many questions would you like?
+                <form onSubmit={this.submitQuestions} className='centered-triviaquestions'>
+                    <p className='fontsize-header-green'>How many questions would you like?</p>
                     <br/>
-                    <select onChange={this.optionChange}>
+                    <select onChange={this.optionChange} style={{borderBottomLeftRadius: '25px', borderTopLeftRadius: '25px', height: '30px'}}>
                         <option>Select an option</option>
                         <option>5</option>
                         <option>10</option>
@@ -77,7 +77,7 @@ class Quiz extends React.Component{
                         <option>50</option>
                         <option>All</option>
                     </select>
-                    <input type='submit' placeholder='Submit your number request'/>
+                    <input type='submit' placeholder='Submit your number request' style={{background: '#00b300', borderBottomRightRadius: '25px', borderTopRightRadius: '25px'}}/>
                 </form>
                 }
             </div>
