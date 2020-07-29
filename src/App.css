@@ -77,3 +77,14 @@
   color: #cccc00;
 }
 
+.paperwork {
+  position: relative;
+  left: 550px;
+  top: 100px;
+}
+
+.paperwork-title {
+  position: relative;
+  left: 515px;
+}
+

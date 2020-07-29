@@ -76,7 +76,7 @@ class Choices extends React.Component {
         
         return(
             <div>
-                <p onClick={this.renderColor} value={this.props.choiceObj} style={{background: this.color()}}>{this.props.choiceObj}</p>
+                <p onClick={this.renderColor} value={this.props.choiceObj} style={{background: this.color(), left: '5px', position: 'relative'}}>{this.props.choiceObj}</p>
             </div>
         )
     }

@@ -78,7 +78,7 @@ class Paperwork extends React.Component {
 
     render(){
         return(
-            <div>
+            <div className='paperwork'>
                 <Form>
                     <Form.Check type='checkbox' id={`check-api-checkbox`} isValid>
                         <Form.Check.Input type='checkbox' checked={this.state.checkedOff ? 'checked' : null}  onClick={this.checkedItem}/>

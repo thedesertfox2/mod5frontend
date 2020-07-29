@@ -19,12 +19,10 @@ class NavBar extends React.Component{
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                         {!this.props.user ? 
-                        <Nav className="mr-auto">
-                            
-
+                        <Nav>
                             <Nav.Link >
                                 <Link to='/login'>
-                                    <div id="navbar">
+                                    <div id="navbar" >
                                         Login
                                     </div>
                                 </Link> 

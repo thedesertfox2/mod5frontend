@@ -37,15 +37,19 @@ class Container extends React.Component {
                 } />
 
                 <Route path='/paperwork' render={() =>
-
-                    this.state.dmvPaperworks.map(paperwork => 
-                    <Paperwork paperWorkObj={paperwork} 
-                    key={paperwork.id} 
-                    currentUser={this.props.currentUser} 
-                    myPaperworks={this.props.myPaperworks}
-                    
-                    updateMyPaperworks={this.props.updateMyPaperworks}
-                    />)
+                    <div >
+                        <h1 className='paperwork-title'>
+                            Your Permit Paperwork:
+                        </h1>
+                            {this.state.dmvPaperworks.map(paperwork => 
+                            <Paperwork paperWorkObj={paperwork} 
+                            key={paperwork.id} 
+                            currentUser={this.props.currentUser} 
+                            myPaperworks={this.props.myPaperworks}
+                            
+                            updateMyPaperworks={this.props.updateMyPaperworks}
+                        />)}
+                    </div>
                 } />
 
                 <Route path='/practice_test' render={() => 

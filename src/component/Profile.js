@@ -53,7 +53,7 @@ class Profile extends React.Component{
 
     render(){
         return(
-            <div>
+            <div style={{position: 'relative', left: '5px'}}>
                 Your Name: {this.props.currentUser.name}
                 <br/>
                 Your Birthday: {this.state.age}
