@@ -64,10 +64,9 @@ class Choices extends React.Component {
         if (this.props.showAnswer && this.props.correct === this.props.choiceObj) {
             return "green"
         } else if (this.props.showAnswer && this.state.choice === this.props.choiceObj) {
-
             return "red"
         } else {
-            return "white"
+            return "#D5D8DC"
         }
 
     }

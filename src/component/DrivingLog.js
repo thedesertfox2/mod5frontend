@@ -45,7 +45,7 @@ class DrivingLog extends React.Component {
                         <br/>
                     </div>
 
-                    <div onClick={this.renderManeuvers}>
+                    <div onClick={this.renderManeuvers} className='driving-log'>
                         <h4>Parking (at least 2hrs.)</h4>
                         <h6>Objective:</h6> <p>Student Should be able to park in a lot with cars parked and moving around.</p>
                         <br/>

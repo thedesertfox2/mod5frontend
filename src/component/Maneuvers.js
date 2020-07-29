@@ -16,7 +16,7 @@ class Maneuvers extends React.Component {
     render(){
         return(
             <div>
-                {this.state.renderManeuvers ? <div onClick={this.renderManeuvers}><h3>{this.props.maneuverObj.name}</h3><ReactPlayer url={this.props.maneuverObj.url}/></div> : <div onClick={this.renderManeuvers}><h3>{this.props.maneuverObj.name}</h3></div>}
+                {this.state.renderManeuvers ? <div onClick={this.renderManeuvers} ><h3 className='driving-log'>{this.props.maneuverObj.name}</h3><ReactPlayer url={this.props.maneuverObj.url}/></div> : <div onClick={this.renderManeuvers}><h3 className='driving-log'>{this.props.maneuverObj.name}</h3></div>}
             </div>
         )
     }

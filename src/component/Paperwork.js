@@ -77,7 +77,6 @@ class Paperwork extends React.Component {
     }
 
     render(){
-        
         return(
             <div>
                 <Form>
@@ -88,7 +87,6 @@ class Paperwork extends React.Component {
             
                     </Form.Check>
                 </Form>
-                
             </div>
         )
     }

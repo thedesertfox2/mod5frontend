@@ -41,7 +41,7 @@ class Login extends React.Component{
     render(){
         // debugger
         return(
-            <form onSubmit={this.onLoginSubmit}>
+            <form onSubmit={this.onLoginSubmit} className='center'>
                 <label>Username: </label>
                 <br/>
                 <input type='text' name='username' value={this.state.username} onChange={this.handleUsernameChange}></input>

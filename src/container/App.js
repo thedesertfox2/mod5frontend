@@ -70,38 +70,39 @@ class App extends React.Component {
     return (
       <div>
         <Navbar user={this.state.user} logout={this.logout}/>
+        <div classname='App'>
+          <Switch>
 
-        <Switch>
+            <Route path='/maneuvers' render={() => 
+              this.state.user ? <Container component={Maneuvers}/> : <Redirect to='login'/>
+            } />
 
-          <Route path='/maneuvers' render={() => 
-            this.state.user ? <Container component={Maneuvers}/> : <Redirect to='login'/>
-          } />
+            <Route path='/home' render={() => 
+              this.state.user ? <Container component={Homepage} currentUser={this.state.user}/> : <Redirect to='login'/>
+            } />
 
-          <Route path='/home' render={() => 
-            this.state.user ? <Container component={Homepage} currentUser={this.state.user}/> : <Redirect to='login'/>
-          } />
+            <Route path='/paperwork' render={() => 
+              this.state.user ? <Container component={Paperwork} myPaperworks={this.state.myPaperworks} currentUser={this.state.user} updateMyPaperworks={this.updateMyPaperworks}/> : <Redirect to='login'/>
+            } />
 
-          <Route path='/paperwork' render={() => 
-            this.state.user ? <Container component={Paperwork} myPaperworks={this.state.myPaperworks} currentUser={this.state.user} updateMyPaperworks={this.updateMyPaperworks}/> : <Redirect to='login'/>
-          } />
+            <Route path='/practice_test' render={() => 
+              this.state.user ? <Container component={Quiz} currentUser={this.state.user}/> : <Redirect to='login'/>
+            } />
 
-          <Route path='/practice_test' render={() => 
-            this.state.user ? <Container component={Quiz} currentUser={this.state.user}/> : <Redirect to='login'/>
-          } />
+            <Route path='/my_hours' render={() => 
+              this.state.user ? <Container component={Timer} currentUser={this.state.user}/> : <Redirect to='login'/>
+            } />
 
-          <Route path='/my_hours' render={() => 
-            this.state.user ? <Container component={Timer} currentUser={this.state.user}/> : <Redirect to='login'/>
-          } />
+            <Route path='/profile' render={() => 
+              this.state.user ? <Container component={Profile} currentUser={this.state.user} updateUser={this.currentUser}/> : <Redirect to='login'/>
+            } />
 
-          <Route path='/profile' render={() => 
-            this.state.user ? <Container component={Profile} currentUser={this.state.user} updateUser={this.currentUser}/> : <Redirect to='login'/>
-          } />
+            <Route path='/login' render={() => 
+              this.state.user ? <Redirect to='/home'/> : <Container component={Login} updateUser={this.currentUser}/>
+            } />
 
-          <Route path='/login' render={() => 
-            this.state.user ? <Redirect to='/home'/> : <Container component={Login} updateUser={this.currentUser}/>
-          } />
-
-        </Switch>
+          </Switch>
+        </div>
          
       </div>
     );
