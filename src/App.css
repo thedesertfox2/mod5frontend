@@ -50,23 +50,50 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: white;
-  position: absolute;
-  background-color: #00b300;
-  padding-bottom: 24.5%;
-  padding-top: 15%;
-  padding-right: 50%;
-  padding-left: 50%;
-  right: 0%;
-  left: -5%;
-}
-
-.driving-log {
   color: black;
+  position: relative;
+  background-color: #EEEEEE;
+  top: 200px;
+  text-align: center;
 }
 
-.driving-log:hover {
-  color: #cccc00
+h3.driving-log {
+  color: black;
+  text-align: center;
+}
+
+h3.driving-log:hover {
+  color: #00b300
+}
+
+div.driving-log {
+  position: relative;
+  text-align: center;
+  background-color: #F8F8F8;
+  color: black;
+  border: 3px solid;
+  width: 600px;
+  left: 400px;
+  border-radius: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+div.driving-log-clickable {
+  position: relative;
+  text-align: center;
+  color: black;
+  background-color: #F8F8F8;
+  border: 3px solid;
+  width: 600px;
+  left: 400px;
+  border-radius: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+div.driving-log-clickable:hover {
+  background-color: #DDDDDD;
 }
 
 #navbar {
@@ -74,26 +101,31 @@
 }
 
 #navbar:hover {
-  color: #cccc00;
+  color: #00b300;
 }
 
 .paperwork {
   position: relative;
-  left: 550px;
+  text-align: center;
   top: 100px;
+  left: calc(50% - 150px);
+  border: 3px solid;
+  width: 300px;
+  margin-bottom: 10px;
+  border-radius: 4px;
 }
 
 .paperwork-title {
   position: relative;
-  left: 515px;
+  text-align: center;
   top: 50px;
   color: #00b300;
 }
 
 .homepage {
   position: relative;
-  left: 300px;
-  top: 300px;
+  top: 200px;
+  text-align: center;
   font-size: 3em;
   color: #00b300;
 }
@@ -102,13 +134,13 @@
   font-size: 3em;
   color: #00b300;
   position: relative;
-  right: 250px;
+  text-align: center;
   
 }
 
 .results-header {
   position: relative;
-  left: 200px;
+  text-align: center;
   font-size: 3em;
   color: #00b300;
   top: 50px
@@ -121,12 +153,12 @@
 .results-answer {
   position: relative;
   top: 20px;
-  left: 100px;
+  text-align: left;
 }
 
 .centered-triviaquestions {
   position: relative;
-  left: 600px;
+  text-align: center;
   top: 300px;
 }
 
@@ -142,9 +174,17 @@
   margin-top: .3rem;
   margin-left: -1.25rem;
   transform: scale(3);
+  
 } 
 
-.form-check-input:after {
+.form-check-input:checked {
   content: '';
-  color: #00b300;
+  opacity: 1;
+}
+
+input.driving-log {
+  position: relative;
+  left: 600px;
+  background-color: #00b300;
+  border-radius: 25px;
 }

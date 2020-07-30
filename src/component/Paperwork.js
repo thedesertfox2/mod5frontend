@@ -78,15 +78,18 @@ class Paperwork extends React.Component {
 
     render(){
         return(
-            <div className='paperwork'>
-                <Form>
+            <div className='paperwork' style={ this.state.checkedOff ? {background: '#00b300'} : {background: 'white'}} onClick={this.checkedItem}>
+                {/* <Form>
                     <Form.Check type='checkbox' id={`check-api-checkbox`} isValid>
-                        <Form.Check.Input type='checkbox' checked={this.state.checkedOff ? 'checked' : null}  onClick={this.checkedItem}/>
+                        <Form.Check.Input style={{transform: 'scale(1.2)'}} type='checkbox' checked={this.state.checkedOff ? 'checked' : null}  />
                         <Form.Check.Label><h5>{this.props.paperWorkObj.name}</h5> {this.props.paperWorkObj.description ? <p style={{color: '#00b300'}}>({this.props.paperWorkObj.description})</p> : null}</Form.Check.Label>
                         <br/>
             
                     </Form.Check>
-                </Form>
+                </Form> */}
+                <h5>{this.props.paperWorkObj.name}</h5>
+                <br/>
+                {this.props.paperWorkObj.description ? <p>({this.props.paperWorkObj.description})</p> : null}
             </div>
         )
     }

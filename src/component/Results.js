@@ -33,8 +33,8 @@ class Results extends React.Component {
                 {this.props.trivia.map(trivia => (
                     <div className='results-answer'>
                         <h4>{num++}). {trivia[0].question}</h4>
-                        <br/>
                         <p>{trivia[0].choices.correct}</p>
+                        <br/>
                     </div>
                 ))}
                 <button type='click' onClick={this.props.newQuiz} className='button-center'>Click this to take a new Quiz!</button>
