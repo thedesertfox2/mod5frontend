@@ -73,7 +73,7 @@ div.driving-log {
   color: black;
   border: 3px solid;
   width: 600px;
-  left: 400px;
+  left: calc(50% - 300px);
   border-radius: 50px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -86,7 +86,7 @@ div.driving-log-clickable {
   background-color: #F8F8F8;
   border: 3px solid;
   width: 600px;
-  left: 400px;
+  left: calc(50% - 300px);
   border-radius: 50px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -159,12 +159,12 @@ div.driving-log-clickable:hover {
 .centered-triviaquestions {
   position: relative;
   text-align: center;
-  top: 300px;
+  top: calc(50% + 108px);
 }
 
 .button-center {
   position: relative;
-  left: 600px;
+  left: calc(50% - 112.275px);
   background: #00b300;
   border-radius: 25px
 }
@@ -184,7 +184,7 @@ div.driving-log-clickable:hover {
 
 input.driving-log {
   position: relative;
-  left: 600px;
+  left: calc(50% - (105.0px));
   background-color: #00b300;
   border-radius: 25px;
 }

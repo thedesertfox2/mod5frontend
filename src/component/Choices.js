@@ -76,7 +76,7 @@ class Choices extends React.Component {
         
         return(
             <div>
-                <p onClick={this.renderColor} value={this.props.choiceObj} style={{border: '5px solid black', background: this.color(), textAlign: 'center', top: '200px', left: '575px', width: '300px', position: 'relative', borderRadius: '15px'}}>{this.props.choiceObj}</p>
+                <p onClick={this.renderColor} value={this.props.choiceObj} style={{border: '5px solid black', background: this.color(), textAlign: 'center', top: '200px', left: 'calc(50% - 150px)', width: '300px', position: 'relative', borderRadius: '15px'}}>{this.props.choiceObj}</p>
             </div>
         )
     }
